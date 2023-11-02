@@ -53,6 +53,21 @@ runs:
           }
         EOF
 
+    - name: Update PAC_VERSION
+      shell: bash
+      run: |
+        cat > lua/autorun/pac_version.lua << EOF
+        if SERVER then
+          SetGlobalString("pac_version", "${{ github.ref }}")
+        end
+        function _G.PAC_VERSION()
+          return GetGlobalString("pac_version")
+        end
+        concommand.Add("pac_version", function()
+          print(PAC_VERSION())
+        end)
+        EOF
+
     - name: Run SteamCMD
       shell: bash
       run: |
