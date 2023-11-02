@@ -35,6 +35,21 @@ runs:
       shell: bash
       run: |
         sudo apt-get install lua5.3
+        
+    - name: Update PAC_VERSION
+      shell: bash
+      run: |
+        cat > lua/autorun/pac_version.lua << EOF
+        if SERVER then
+          SetGlobalString("pac_version", "${{ github.sha }}")
+        end
+        function _G.PAC_VERSION()
+          return GetGlobalString("pac_version")
+        end
+        concommand.Add("pac_version", function()
+          print(PAC_VERSION())
+        end)
+        EOF
 
     - name: Run gma packer
       shell: bash
