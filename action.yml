@@ -87,5 +87,8 @@ runs:
         echo
         echo ~/Steam/workshopbuilds/depot_build_4000.log
         echo "$(cat ~/Steam/workshopbuilds/depot_build_4000.log)"
+        echo
+        echo workshop.vdf
+        echo "$(cat `pwd -P`/workshop.vdf)"
 
         exit 1
