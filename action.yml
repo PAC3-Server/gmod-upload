@@ -60,7 +60,7 @@ runs:
       shell: bash
       run: |
         changelog='${{ inputs.changelog }}' &&
-        changelog=${changelog//\"/\\\"} &&
+        changelog=${changelog//\"/\'} &&
         cat > workshop.vdf << EOF
           "workshopitem" {
             "appid" "4000"
