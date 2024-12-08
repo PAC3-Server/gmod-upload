@@ -59,7 +59,7 @@ runs:
     - name: Create .vdf file
       shell: bash
       run: |
-        changelog="${{ inputs.changelog }}" &&
+        changelog='${{ inputs.changelog }}' &&
         changelog=${changelog//\"/\\\"} &&
         cat > workshop.vdf << EOF
           "workshopitem" {
