@@ -59,12 +59,14 @@ runs:
     - name: Create .vdf file
       shell: bash
       run: |
+        changelog="${{ inputs.changelog }}" &&
+        changelog=${changelog//\"/\\\"} &&
         cat > workshop.vdf << EOF
           "workshopitem" {
             "appid" "4000"
             "publishedfileid" "${{ inputs.id }}"
             "contentfolder" "`pwd`/${{ inputs.id }}.gma"
-            "changenote" "${{ inputs.changelog }}"
+            "changenote" "$changelog"
           }
         EOF
 
